@@ -1,0 +1,23 @@
+version: '3'
+services:
+  ytdl_material:
+    container_name: youtubedl_material
+    image: tzahi12345/youtubedl-material:latest
+    environment: 
+      - ALLOW_CONFIG_MUTATIONS='true'
+      - ytdl_mongodb_connection_string='mongodb://${MONGO_USER}:${MONGO_PASSWORD}@{MONGO_HOST}:${MONGO_PORT}'
+      - ytdl_use_local_db='false'
+      - write_ytdl_config='true'
+    volumes:
+      - ${MOUNT}/servers/ytdl-material/appdata:/app/appdata
+      - ${MOUNT}/servers/ytdl-material/audio:/app/audio
+      - ${MOUNT}/servers/ytdl-material/video:/app/video
+      - ${MOUNT}/servers/ytdl-material/subscriptions:/app/subscriptions
+      - ${MOUNT}/servers/ytdl-material/users:/app/users
+    ports:
+      - "17442:17442"
+    restart: unless-stopped
+networks:
+  default:
+    name: proxy_default
+    external: true
