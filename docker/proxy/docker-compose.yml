@@ -1,0 +1,13 @@
+# FILEPATH: c:\Users\paxyi\Projects\HomeLab\docker\proxy\docker-compose.yml
+version: '3'
+services:
+  proxy:
+    image: jc21/nginx-proxy-manager:latest
+    ports:
+      - "80:80"
+      - "443:443"
+      - "81:81"
+    volumes:
+      - ${MOUNT}/servers/proxy/data:/data
+      - ${MOUNT}/servers/proxy/letsencrypt:/etc/letsencrypt
+    restart: always
