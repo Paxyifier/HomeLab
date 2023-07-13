@@ -1,0 +1,34 @@
+version: '3.9'
+services:
+  nextcloud:
+    image: nextcloud:latest
+    container_name: nextcloud
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    volumes:
+      - ${MOUNT}/servers/nextcloud/html:/var/www/html
+      - ${MOUNT}/servers/nextcloud/apps:/var/www/html/custom_apps
+      - ${MOUNT}/servers/nextcloud/config:/var/www/html/config
+      - ${MOUNT}/servers/nextcloud/data:/var/www/html/data
+    environment:
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - NEXTCLOUD_ADMIN_USER=${NEXTCLOUD_ADMIN_USER}
+      - NEXTCLOUD_ADMIN_PASSWORD=${NEXTCLOUD_ADMIN_PASSWORD}
+      - NEXTCLOUD_TRUSTED_DOMAINS=${NEXTCLOUD_TRUSTED_DOMAINS}
+      - NEXTCLOUD_DATA_DIR=/var/www/html/data
+      - NEXTCLOUD_UPDATE=1
+    
+  cache:
+    image: redis:alpine
+    container_name: nextcloud-redis
+    restart: unless-stopped
+    volumes:
+      - ${MOUNT}/servers/nextcloud/redis:/data
+networks:
+  default:
+    name: proxy_default
+    external: true
