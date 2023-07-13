@@ -3,7 +3,7 @@ Home Lab Public Demo
 
 ## Overview
 
-This is a public representation of my current home lab setup.  I have a few goals in mind for this project:
+This is a public representation of my current home lab setup. I do use a different repo for actual deployment.  I have a few goals in mind for this project:
  - I want to be able to share my home lab setup with others
  - I want to show my current skill set and what I am working on.
  - I want to be able to track my progress and changes over time.
