@@ -1,0 +1,3 @@
+HOSTS: paxy.cf
+ansible_user: myuser
+docker_group: docker
