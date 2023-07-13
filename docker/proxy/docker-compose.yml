@@ -1,4 +1,3 @@
-# FILEPATH: c:\Users\paxyi\Projects\HomeLab\docker\proxy\docker-compose.yml
 version: '3'
 services:
   proxy:
